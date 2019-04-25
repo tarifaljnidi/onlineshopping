@@ -55,7 +55,7 @@
 			<c:if test="${userClickContact == true }">
 				<%@include file="contact.jsp"%>
 			</c:if>
-			<!-- Load only when user clicks v -->
+			<!-- Load only when user clicks view products -->
 			<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true }">
 				<%@include file="listProducts.jsp"%>
 			</c:if>	
@@ -69,6 +69,9 @@
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.min.js"></script>
 
+<!-- PLUGIN DATATABLE -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
 		<!-- Self coded javascript -->
 		<script src="${js}/myapp.js"></script>
 	</div>

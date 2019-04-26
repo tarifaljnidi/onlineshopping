@@ -12,6 +12,9 @@ $(function() {
 	case 'All Products':
 		$('#listProducts').addClass('active');
 		break;
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	default:
 		if (menu == "Home")
 			break;
@@ -92,12 +95,19 @@ $(function() {
 											+ data
 											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span>View</a> &#160;';
 								
+									if(row.quantity<1)
+										{
+										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart">Add to cart</span></a>';
+											
+										
+										}else
+											{
 									str += '<a href="'
 										+ window.contextRoot
 										+ '/cart/add/'
 										+ data
 										+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart">Add to cart</span></a>';
-							
+											}
 									
 									return str;
 								}

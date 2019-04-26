@@ -25,33 +25,30 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// private fields
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String code;
-	@NotBlank(message = "Please enter the product name!")
-	private String name;
-	@NotBlank(message = "Please enter the brand name!")
-	private String brand;
-	@NotBlank(message = "Please enter the description!")
-	@JsonIgnore
-	private String description;
-	@Column(name = "unit_price")
-	@Min(value = 1, message="Please select at least one value!")
-	private double unitPrice;
-	private int quantity;
-	@Column(name = "is_active")	
-	@JsonIgnore
-	private boolean active;
-	@Column(name = "category_id")
-	@JsonIgnore
-	private int categoryId;
-	@Column(name = "supplier_id")
-	@JsonIgnore
-	private int supplierId;
-	private int purchases;
-	private int views;
-	
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private int id;
+		private String code;
+		@NotBlank(message = "Please enter the product name!")
+		private String name;
+		@NotBlank(message = "Please enter the brand name!")
+		private String brand;
+		@NotBlank(message = "Please enter the description!")
+		private String description;
+		@Column(name = "unit_price")
+		@Min(value = 1, message="Please select at least one value!")
+		private double unitPrice;
+		private int quantity;
+		@Column(name = "is_active")	
+		private boolean active;
+		@Column(name = "category_id")
+		@JsonIgnore
+		private int categoryId;
+		@Column(name = "supplier_id")
+		@JsonIgnore
+		private int supplierId;
+		private int purchases;
+		private int views;
 	
 	// default constructor
 	public Product() {

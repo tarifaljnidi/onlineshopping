@@ -122,37 +122,37 @@ $(function() {
 
 	//
 
-	$('.switch input[type="checkbox"]')
-			.on(
-					'change',
-					function() {
-						var checkbox = $(this);
-						var checked = checkbox.prop('checked');
-						var dMsg = (checked) ? 'You wanrt to activate the product?'
-								: 'You wanrt to deactivate the product?';
-						var value = checkbox.prop('value');
-
-						bootbox
-								.confirm({
-									size : 'medium',
-									title : 'Product Activation/Deactivation',
-									message : dMsg,
-									callback : function(confirmed) {
-										if (confirmed) {
-											console.log(value);
-											bootbox
-													.alert({
-														size : 'medium',
-														title : 'Information',
-														message : 'you are going to perform operation on product'
-																+ value
-													});
-										} else {
-											checkbox.prop('checked', !checked);
-										}
-									}
-								});
-					});
+//	$('.switch input[type="checkbox"]')
+//			.on(
+//					'change',
+//					function() {
+//						var checkbox = $(this);
+//						var checked = checkbox.prop('checked');
+//						var dMsg = (checked) ? 'You wanrt to activate the product?'
+//								: 'You wanrt to deactivate the product?';
+//						var value = checkbox.prop('value');
+//
+//						bootbox
+//								.confirm({
+//									size : 'medium',
+//									title : 'Product Activation/Deactivation',
+//									message : dMsg,
+//									callback : function(confirmed) {
+//										if (confirmed) {
+//											console.log(value);
+//											bootbox
+//													.alert({
+//														size : 'medium',
+//														title : 'Information',
+//														message : 'you are going to perform operation on product'
+//																+ value
+//													});
+//										} else {
+//											checkbox.prop('checked', !checked);
+//										}
+//									}
+//								});
+//					});
 
 	// Datatable for admin
 	var $adminProductsTable = $('#adminProductsTable');
@@ -215,18 +215,15 @@ $(function() {
 								data : 'active',
 								bSortable : false,
 								mRender : function(data, type, row) {
-									var str = '';
+									var str ='';
+									str +='<label class="switch">';
 									if (data) {
-										str += '<label class="switch"> <input type="checkbox" value="'
-												+ row.id
-												+ '" checked="checked">  <div class="slider round"> </div></label>';
+										str +='<input type="checkbox" checked="checked" value="'+ row.id+'" />';
 
 									} else {
-										str += '<label class="switch"> <input type="checkbox" value="'
-												+ row.id
-												+ '">  <div class="slider round"> </div></label>';
+										str += '<input type="checkbox" value="'+row.id+'" />';  
 									}
-
+									str +='<div class="slider round"> </div></label>';
 									return str;
 								}
 							},
@@ -236,25 +233,15 @@ $(function() {
 								mRender : function(data, type, row) {
 
 									var str = '';
-									str += '<a href="' + $
-									{
-										contextRoot
-									}
-									+'/manage/'
-											+ data
-											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
-
+									str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-primary">';
+									str += '<span class="glyphicon glyphicon-pencil"></span></a>';
 									return str;
 								}
 							} ],
 
 					initComplete : function() {
 						var api = this.api();
-						api
-								.$('.switch input[type="checkbox"]')
-								.on(
-										'change',
-										function() {
+						api.$('.switch input[type="checkbox"]').on('change',function() {
 
 											var checkbox = $(this);
 											var checked = checkbox

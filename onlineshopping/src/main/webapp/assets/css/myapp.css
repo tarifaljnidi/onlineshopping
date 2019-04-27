@@ -89,23 +89,16 @@ footer {
 	height: 100px;
 	
 }
+.adminDataTableImg {
+	
+	width:45px;
+	height: 45px;
+	
+}
 
 .has-success {
 	color: #4582ec;
 }
-
-.adminDataTableImg{
-	width:45px;
-	height:45px;
-
-}
-
-
-/* .glyphicon glyphicon-pencil:before{ */
-	
-/* 	content:"\270f"; */
-/* } */
-
 
 /*Toggle Switch code*/
 
@@ -251,7 +244,5 @@ input:checked + .slider:before {
 		z-index:9999;
 		background:url(../images/pre-loader.gif) 50% no-repeat #fff
 }
-
-
 
 

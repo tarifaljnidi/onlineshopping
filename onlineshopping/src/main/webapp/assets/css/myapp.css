@@ -94,6 +94,19 @@ footer {
 	color: #4582ec;
 }
 
+.adminDataTableImg{
+	width:45px;
+	height:45px;
+
+}
+
+
+/* .glyphicon glyphicon-pencil:before{ */
+	
+/* 	content:"\270f"; */
+/* } */
+
+
 /*Toggle Switch code*/
 
 /* The switch - the box around the slider */
@@ -238,5 +251,7 @@ input:checked + .slider:before {
 		z-index:9999;
 		background:url(../images/pre-loader.gif) 50% no-repeat #fff
 }
+
+
 
 

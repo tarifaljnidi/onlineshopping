@@ -2,8 +2,11 @@ package net.tarif.onlineshopping.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import net.tarif.onlineshopping.util.FileUploadUtility;
+import net.tarif.onlineshopping.validator.ProductValidator;
 import net.tarif.shoppingbackend.dao.CategoryDAO;
 import net.tarif.shoppingbackend.dao.ProductDAO;
 import net.tarif.shoppingbackend.dto.Category;
@@ -53,8 +56,9 @@ public class ManagementController {
 		return mv;
 	}
 	@RequestMapping(value = "/products", method=RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,BindingResult results,Model model){
-		
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,BindingResult results,Model model
+			,HttpServletRequest request){
+		new ProductValidator().validate(mProduct, results);
 		
 		if(results.hasErrors()){
 			model.addAttribute("userClickManageProducts", true);
@@ -66,6 +70,12 @@ public class ManagementController {
 		
 		
 		productDAO.add(mProduct);
+		
+		//upload the file
+		 if(!mProduct.getFile().getOriginalFilename().equals("") ){
+			 FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode()); 
+		 }
+		 
 		return "redirect:/manage/products?operation=product";
 	}
 

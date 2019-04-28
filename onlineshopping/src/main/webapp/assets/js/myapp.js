@@ -281,5 +281,43 @@ $(function() {
 
 				});
 	}
+	
+	// validating the product form element	
+	// fetch the form element
+	$categoryForm = $('#categoryForm');
+	
+	if($categoryForm.length) {
+		
+		$categoryForm.validate({			
+				rules: {
+					name: {
+						required: true,
+						minlength: 3
+					},
+					description: {
+						required: true,
+						minlength: 5					
+					}				
+				},
+				messages: {					
+					name: {
+						required: 'Please enter category name!',
+						minlength: 'Please enter at least 2 characters'
+					},
+					description: {
+						required: 'Please enter category name!',
+						minlength: 'Please enter at least 5 characters'
+					}					
+				},
+				errorElement : "em",
+				errorPlacement : function(error, element) {
+					error.addClass('help-block');
+					error.insertAfter(element);
+				}				
+			}
+		
+		);
+		
+	}
 
 });

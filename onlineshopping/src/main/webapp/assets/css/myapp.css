@@ -78,8 +78,15 @@ footer {
 	width:100%;
 	position:absolute;
 	bottom:20px;
-	height: 60px;
+	height: 40px;
+	padding-top: 10px;
+	background: black;
+	color:white;
 	
+	
+}
+#footer-content {
+  
 }
 
 

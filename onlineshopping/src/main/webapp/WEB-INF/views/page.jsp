@@ -47,6 +47,10 @@
 		<%@include file="./shared/navbar.jsp"%>
 		<!-- Page Content -->
 		<div class="content">
+			<!-- Loading the home content -->
+			<c:if test="${userClickHome == true }">
+				<%@include file="home.jsp"%>
+			</c:if>
 			<!-- Load only when user clicks about -->
 			<c:if test="${userClickAbout == true }">
 				<%@include file="about.jsp"%>
@@ -66,7 +70,7 @@
 			<c:if test="${userClickShowProduct == true}">
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
-			
+
 			<!-- Load only when user clicks Manage product -->
 			<c:if test="${userClickManageProducts == true}">
 				<%@include file="manageProducts.jsp"%>
@@ -78,15 +82,15 @@
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.js"></script>
-<%-- 		<script src="${js}/jquery.min.js"></script>  --%>
-<%-- 		<script src="${js}/bootstrap.bundle.min.js"></script> --%>
+		<%-- 		<script src="${js}/jquery.min.js"></script>  --%>
+		<%-- 		<script src="${js}/bootstrap.bundle.min.js"></script> --%>
 		<script src="${js}/bootstrap.min.js"></script>
 
 		<!-- PLUGIN DATATABLE -->
 		<script src="${js}/jquery.dataTables.js"></script>
 
 
- 		<script src="${js}/dataTables.bootstrap.js"></script> 
+		<script src="${js}/dataTables.bootstrap.js"></script>
 
 		<!-- DataTable Bootstrap Script -->
 		<script src="${js}/bootbox.min.js"></script>
@@ -94,7 +98,7 @@
 		<!-- Self coded javascript -->
 		<script src="${js}/myapp.js"></script>
 
-		
+
 
 	</div>
 </body>

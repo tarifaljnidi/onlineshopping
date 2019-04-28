@@ -233,7 +233,7 @@ $(function() {
 								mRender : function(data, type, row) {
 
 									var str = '';
-									str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-primary">';
+									str += '<a href="'+contextRoot+'/manage/'+data+'/product" class="btn btn-primary">';
 									str += '<span class="glyphicon glyphicon-pencil"></span></a>';
 									return str;
 								}

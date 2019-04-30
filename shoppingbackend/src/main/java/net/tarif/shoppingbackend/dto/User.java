@@ -118,4 +118,15 @@ public class User implements Serializable{
 		this.cart = cart;
 	}
 	
+//	@Column(name = "user_id")
+//	private int userId;
+//	
+//	public int getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
+	
+	
 }

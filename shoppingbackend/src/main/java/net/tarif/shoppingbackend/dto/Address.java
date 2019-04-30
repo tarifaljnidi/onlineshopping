@@ -105,6 +105,16 @@ public class Address implements Serializable {
 		this.user = user;
 	}
 	
+//	@Column(name = "user_id")
+//	private int userId;
+//	
+//	public int getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
+	
 	
 	
 }

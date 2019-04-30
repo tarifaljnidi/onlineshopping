@@ -13,8 +13,9 @@
     http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd      
     ">
 
-	<context:component-scan base-package="net.tarif.onlineshopping.controller" />
-	<context:component-scan base-package="net.tarif.shoppingbackend" />
+	<context:component-scan base-package="net.tarif.onlineshopping" />
+	<context:component-scan base-package="net.tarif.shoppingbackend" /> 
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

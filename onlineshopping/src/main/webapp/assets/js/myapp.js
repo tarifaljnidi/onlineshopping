@@ -107,21 +107,33 @@ $(function() {
 											+ window.contextRoot
 											+ '/show/'
 											+ data
-											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span>View</a> &#160;';
+											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
 
-									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart">Add to cart</span></a>';
-
-									} else {
-										str += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add/'
-												+ data
-												+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart">Add to cart</span></a>';
+									
+									if(userRole !== 'ADMIN') {
+										if (row.quantity < 1) {
+											str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										} else {
+	
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add/'
+													+ data
+													+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										}
 									}
-
+									else {
+										str += '<a href="'
+											+ window.contextRoot
+											+ '/manage/'
+											+ data
+											+ '/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+									}
+									
 									return str;
+
 								}
+
 							} ]
 				});
 	}

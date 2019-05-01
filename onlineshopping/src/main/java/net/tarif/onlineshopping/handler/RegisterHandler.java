@@ -9,6 +9,7 @@ import net.tarif.shoppingbackend.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +18,8 @@ public class RegisterHandler {
 	
  @Autowired
  private UserDAO userDAO;
+ @Autowired
+ private PasswordEncoder passwordEncoder;
  
 	public RegisterModel init() { 
 		  return new RegisterModel();
@@ -55,7 +58,9 @@ public class RegisterHandler {
 		   user.setCart(cart);
 		  }
 		   
-		  
+		// encode the password
+		  user.setPassword(passwordEncoder.encode(user.getPassword()));
+		  		  
 		  // save the user
 		  userDAO.addUser(user);
 		  // save the billing address

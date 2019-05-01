@@ -29,11 +29,37 @@
 
 			</ul>
 
+
+
 			<ul class="nav navbar-nav navbar-right">
-					<li id="Register"><a href="${contextRoot}/register">Sign
+				<security:authorize access="isAnonymous()">
+					<li id="register"><a href="${contextRoot}/register">Sign
 							Up</a></li>
-					<li id="Login"><a href="${contextRoot}/login">Login</a></li>
+					<li id="login"><a href="${contextRoot}/login">Login</a></li>
+				</security:authorize>
+				<security:authorize access="isAuthenticated()">
+					<li class="dropdown" id="userModel"><a
+						class="btn btn-default dropdown-toggle" href="javascript:void(0)"
+						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="true"> ${userModel.fullName} <span
+							class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<security:authorize access="hasAuthority('USER')">
+								<li id="cart"><a href="${contextRoot}/cart/show"> <span
+										class="glyphicon glyphicon-shopping-cart"></span>&#160;<span
+										class="badge">${userModel.cart.cartLines}</span> - &euro;
+										${userModel.cart.grandTotal}
+								</a></li>
+								<li role="separator" class="divider"></li>
+							</security:authorize>
+							<li id="logout"><a href="${contextRoot}/logout">Logout</a></li>
+						</ul></li>
+				</security:authorize>
 			</ul>
+
+
+
 
 		</div>
 		<!-- /.navbar-collapse -->

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageController {
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private ProductDAO productDAO;
 
@@ -46,80 +46,90 @@ public class PageController {
 		mv.addObject("userClickContact", true);
 		return mv;
 	}
-	
+
 	/*
 	 * Methods to load all the products and based on category
-	 * */
-	
+	 */
+
 	@RequestMapping(value = "/show/all/products")
-	public ModelAndView showAllProducts() {		
-		ModelAndView mv = new ModelAndView("page");		
-		mv.addObject("title","All Products");
-		
-		//passing the list of categories
-		mv.addObject("categories", categoryDAO.list());
-		
-		mv.addObject("userClickAllProducts",true);
-		return mv;				
-	}
-	@RequestMapping(value = "/show/category/{id}/products")
-	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {		
+	public ModelAndView showAllProducts() {
 		ModelAndView mv = new ModelAndView("page");
-		
-		// categoryDAO to fetch a single category
-		Category category = null;
-		
-		category = categoryDAO.get(id);
-		
-		mv.addObject("title",category.getName());
-		
-		//passing the list of categories
+		mv.addObject("title", "All Products");
+
+		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
-		
-		// passing the single category object
-		mv.addObject("category", category);
-		
-		mv.addObject("userClickCategoryProducts",true);
-		return mv;				
-	}	
-	
-	/*
-	 * Viewing a single product
-	 * */
-	
-	@RequestMapping(value = "/show/{id}/product") 
-	public ModelAndView showSingleProduct(@PathVariable int id)  {
-		
-		ModelAndView mv = new ModelAndView("page");
-		
-		Product product = productDAO.get(id);
-		
-//		if(product == null) throw new ProductNotFoundException();
-		
-		// update the view count
-		product.setViews(product.getViews() + 1);
-		productDAO.update(product);
-		//---------------------------
-		
-		mv.addObject("title", product.getName());
-		mv.addObject("product", product);
-		
-		mv.addObject("userClickShowProduct", true);
-		
-		
-		return mv;
-		
-	}
-	
-	@RequestMapping(value="/login")
-	public ModelAndView login(@RequestParam(name="error", required = false)	String error) {
-		ModelAndView mv= new ModelAndView("login");
-		mv.addObject("title", "Login");
-		if(error!=null) {
-			mv.addObject("message", "Username and Password is invalid!");
-		}
-		
+
+		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
 
+	@RequestMapping(value = "/show/category/{id}/products")
+	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("page");
+
+		// categoryDAO to fetch a single category
+		Category category = null;
+
+		category = categoryDAO.get(id);
+
+		mv.addObject("title", category.getName());
+
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+
+		// passing the single category object
+		mv.addObject("category", category);
+
+		mv.addObject("userClickCategoryProducts", true);
+		return mv;
+	}
+
+	/*
+	 * Viewing a single product
+	 */
+
+	@RequestMapping(value = "/show/{id}/product")
+	public ModelAndView showSingleProduct(@PathVariable int id) {
+
+		ModelAndView mv = new ModelAndView("page");
+
+		Product product = productDAO.get(id);
+
+		// if(product == null) throw new ProductNotFoundException();
+
+		// update the view count
+		product.setViews(product.getViews() + 1);
+		productDAO.update(product);
+		// ---------------------------
+
+		mv.addObject("title", product.getName());
+		mv.addObject("product", product);
+
+		mv.addObject("userClickShowProduct", true);
+
+		return mv;
+
+	}
+
+	@RequestMapping(value = "/login")
+	public ModelAndView login(
+			@RequestParam(name = "error", required = false) String error) {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("title", "Login");
+		if (error != null) {
+			mv.addObject("message", "Username and Password is invalid!");
+		}
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/access-denied")
+	public ModelAndView accessDenied() {
+		ModelAndView mv = new ModelAndView("error");
+		mv.addObject("errorTitle", "Not authorized.");
+		mv.addObject("errorDescription",
+				"You are not authorized to view this page!");
+		mv.addObject("title", "403 Access Denied");
+		return mv;
+	}
 }

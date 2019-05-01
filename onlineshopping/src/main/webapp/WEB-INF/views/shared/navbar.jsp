@@ -1,3 +1,5 @@
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -24,8 +26,12 @@
 				<li id="listProducts"><a
 					href="${contextRoot}/show/all/products">View Products</a></li>
 
-				<li id="manageProducts"><a
-					href="${contextRoot}/manage/products">Manage Product</a></li>
+
+				<security:authorize access="hasAuthority('ADMIN')">
+					<li id="manageProducts"><a
+						href="${contextRoot}/manage/products">Manage Product</a></li>
+
+				</security:authorize>
 
 			</ul>
 
@@ -53,7 +59,7 @@
 								</a></li>
 								<li role="separator" class="divider"></li>
 							</security:authorize>
-							<li id="logout"><a href="${contextRoot}/logout">Logout</a></li>
+							<li id="logout"><a href="${contextRoot}/perform-logout">Logout</a></li>
 						</ul></li>
 				</security:authorize>
 			</ul>

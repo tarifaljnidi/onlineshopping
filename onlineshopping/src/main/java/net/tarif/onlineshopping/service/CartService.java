@@ -39,6 +39,55 @@ public class CartService {
 	}
 
 
+	/* to update the cart count */
+	public String udpateCartLine(int cartLineId, int count) {
+
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		if (cartLine == null) {
+
+			return "result=error";
+		} else {
+			double oldTotal = cartLine.getTotal();
+
+			Product product = cartLine.getProduct();
+
+			// check if that much quantity is available or not
+			if (product.getQuantity() < count) {
+				return "result=unavailable";
+			}
+
+			// update the cart line
+			cartLine.setProductCount(count);
+			cartLine.setBuyingPrice(product.getUnitPrice());
+			cartLine.setTotal(product.getUnitPrice() * count);
+			cartLineDAO.update(cartLine);
+
+			// update the cart
+			Cart cart = this.getCart();
+			cart.setGrandTotal(cart.getGrandTotal() - oldTotal
+					+ cartLine.getTotal());
+			cartLineDAO.updateCart(cart);
+
+			return "result=updated";
+		}
+	}
+
+
+	public String removeCartLine(int cartLineId) {
+
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		// deduct the cart
+		// update the cart
+		Cart cart = this.getCart();
+		cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
+		cart.setCartLines(cart.getCartLines() - 1);
+		cartLineDAO.updateCart(cart);
+
+		// remove the cartLine
+		cartLineDAO.remove(cartLine);
+
+		return "result=deleted";
+	}
 	
 
 

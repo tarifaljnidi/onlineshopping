@@ -264,4 +264,7 @@ input:checked+.slider:before {
 	
 	overflow-x:inherit;
 }
-
+.cartImg{
+	width:100px;
+	height:100px;
+}

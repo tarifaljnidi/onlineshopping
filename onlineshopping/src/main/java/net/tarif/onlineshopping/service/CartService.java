@@ -40,7 +40,7 @@ public class CartService {
 
 
 	/* to update the cart count */
-	public String udpateCartLine(int cartLineId, int count) {
+	public String manageCartLine(int cartLineId, int count) {
 
 		CartLine cartLine = cartLineDAO.get(cartLineId);
 		if (cartLine == null) {
@@ -114,7 +114,19 @@ public class CartService {
 			cartLineDAO.updateCart(cart);
 			response = "result=added";
 		}
+		else {
+			// check if the cartLine has been already reached to maximum count
+			if (cartLine.getProductCount() < 3) {
+				// call the manageCartLine method to increase the count
+				response = this.manageCartLine(cartLine.getId(),
+						cartLine.getProductCount() + 1);
+			} else {
+				response = "result=maximum";
+			}
+		}
 		return response;
 	}
+
+
 
 }

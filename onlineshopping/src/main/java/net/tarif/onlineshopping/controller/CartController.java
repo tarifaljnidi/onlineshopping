@@ -41,6 +41,15 @@ public class CartController {
 						"CartLine has been successfully removed!");
 				break;
 
+			case "maximum":
+				mv.addObject("message",
+						"Maximum limit for the item has been reached!");
+				break;
+
+			case "unavailable":
+				mv.addObject("message", "Product quantity is not available!");
+				break;
+
 			}
 		}
 
@@ -53,7 +62,7 @@ public class CartController {
 	@RequestMapping("/{cartLineId}/update")
 	public String udpateCart(@PathVariable int cartLineId,
 			@RequestParam int count) {
-		String response = cartService.udpateCartLine(cartLineId, count);
+		String response = cartService.manageCartLine(cartLineId, count);
 		return "redirect:/cart/show?" + response;
 	}
 
@@ -62,11 +71,11 @@ public class CartController {
 		String response = cartService.removeCartLine(cartLineId);
 		return "redirect:/cart/show?" + response;
 	}
-	
+
 	@RequestMapping("/add/{productId}/product")
 	public String addCartLine(@PathVariable int productId) {
 		String response = cartService.addCartLine(productId);
-		return "redirect:/cart/show?"+response;
+		return "redirect:/cart/show?" + response;
 	}
 
 }

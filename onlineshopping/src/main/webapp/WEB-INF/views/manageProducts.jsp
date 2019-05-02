@@ -121,12 +121,12 @@
 									items="${categories}" itemLabel="name" itemValue="id"
 									class="form-control" />
 								<div class="text-right">
-<%-- 									<c:if test="${Product.id == 0}"> --%>
-										<br />
-										<button type="button" class="btn btn-warning btn-xs"
-											data-toggle="modal" data-target="#myCategoryModal">Add
-											New Category</button>
-<%-- 									</c:if> --%>
+									<%-- 									<c:if test="${Product.id == 0}"> --%>
+									<br />
+									<button type="button" class="btn btn-warning btn-xs"
+										data-toggle="modal" data-target="#myCategoryModal">Add
+										New Category</button>
+									<%-- 									</c:if> --%>
 								</div>
 							</div>
 						</div>
@@ -154,47 +154,55 @@
 			</div>
 		</div>
 	</div>
-	
-<!-- Modal -->
-	<div class="modal fade" id="myCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">New Category</h4>
-	      </div>
-	      <div class="modal-body">
-	        
-	        <sf:form id="categoryForm" class="form-horizontal" modelAttribute="category" action="${contextRoot}/manage/category" method="POST">
-	        	
-       			<div class="form-group">
-					<label class="control-label col-md-4">Name</label>
-					<div class="col-md-8 validate">
-						<sf:input type="text" path="name" id="category_name" class="form-control"
-							placeholder="Category Name" /> 
-					</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myCategoryModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">New Category</h4>
 				</div>
-       			
-       			<div class="form-group">				
-					<label class="control-label col-md-4">Description</label>
-					<div class="col-md-8 validate">
-						<sf:textarea path="description" class="form-control"
-							placeholder="Enter category description here!" id="category_description" /> 
-					</div>
-				</div>	        	        
-	        
-	        
-				<div class="form-group">				
-					<div class="col-md-offset-4 col-md-4">					
-						<input type="submit" name="submit" value="Add Gategory" class="btn btn-primary"/>						
-					</div>
-				</div>	        
-	        </sf:form>
-	      </div>
-	    </div>
-	  </div>
-	</div>	
-	
+				<div class="modal-body">
+
+					<sf:form id="categoryForm" class="form-horizontal"
+						modelAttribute="category" action="${contextRoot}/manage/category"
+						method="POST">
+
+						<div class="form-group">
+							<label class="control-label col-md-4">Name</label>
+							<div class="col-md-8 validate">
+								<sf:input type="text" path="name" id="category_name"
+									class="form-control" placeholder="Category Name" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4">Description</label>
+							<div class="col-md-8 validate">
+								<sf:textarea path="description" class="form-control"
+									placeholder="Enter category description here!"
+									id="category_description" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-4">
+								<input type="submit" name="submit" value="Add Gategory"
+									class="btn btn-primary" />
+							</div>
+						</div>
+					</sf:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- 	products table for admin -->
 	<div class="row">
 
@@ -206,73 +214,79 @@
 		<div class='col-xs-12'>
 			<div style="overflow: auto">
 
-				<table id="adminProductsTable"
-					class="table table-sruped table-bordered">
+				<div class="container-fluid">
 
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Brand</th>
-							<th>Name</th>
-							<th>Qty. Avail</th>
-							<th>Unit Price</th>
-							<th>Activate</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
+					<div class="table-responsive">
 
-					<!-- 					<tbody> -->
-					<!-- 						<tr> -->
-					<!-- 							<td>4</td> -->
-					<!-- 							<td><img class="adminDataTableImg" -->
-					<%-- 								src="${contextRoot}/resources/images/PRDMNO123PQRX.jpg" alt="macbook pro" /></td> --%>
-					<!-- 							<td>MacBook Pro</td> -->
-					<!-- 							<td>1</td> -->
-					<!-- 							<td>1500</td> -->
-					<!-- 							<td><label class="switch"> <input type="checkbox" -->
-					<!-- 									checked="checked" value="4"/> -->
-					<!-- 									<div class="slider"></div> -->
-					<!-- 							</label></td> -->
-					<%-- 							<td><a href="${contextRoot}/manage/4/product" --%>
-					<!-- 								class="btn btn-warning" > <span -->
-					<!-- 								class="glyphicon glyphicon-penciil"></span> </a></td> -->
-					<!-- 						</tr> -->
+						<table id="adminProductsTable"
+							class="table table-sruped table-bordered">
 
-					<!-- 						<tr> -->
-					<!-- 							<td>4</td> -->
-					<!-- 							<td><img class="adminDataTableImg" -->
-					<%-- 								src="${contextRoot}/resources/images/PRDMNO123PQRX.jpg" alt="macbook pro" /></td> --%>
-					<!-- 							<td>MacBook Pro</td> -->
-					<!-- 							<td>Appel</td> -->
-					<!-- 							<td>1</td> -->
-					<!-- 							<td>1500</td> -->
-					<!-- 							<td><label class="switch"> <input type="checkbox" -->
-					<!-- 									 value="4"/> -->
-					<!-- 									<div class="slider"></div> -->
-					<!-- 							</label></td> -->
-					<%-- 							<td><a href="${contextRoot}/manage/4/product" --%>
-					<!-- 								class="btn btn-warning" > <span -->
-					<!-- 								class="glyphicon glyphicon-penciil"></span> </a></td> -->
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>&#160;</th>
+									<th>Brand</th>
+									<th>Name</th>
+									<th>Qty. Avail</th>
+									<th>Unit Price</th>
+									<th>Activate</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
 
-					<!-- 						</tr> -->
-					<!-- 					</tbody> -->
+							<!-- 					<tbody> -->
+							<!-- 						<tr> -->
+							<!-- 							<td>4</td> -->
+							<!-- 							<td><img class="adminDataTableImg" -->
+							<%-- 								src="${contextRoot}/resources/images/PRDMNO123PQRX.jpg" alt="macbook pro" /></td> --%>
+							<!-- 							<td>MacBook Pro</td> -->
+							<!-- 							<td>1</td> -->
+							<!-- 							<td>1500</td> -->
+							<!-- 							<td><label class="switch"> <input type="checkbox" -->
+							<!-- 									checked="checked" value="4"/> -->
+							<!-- 									<div class="slider"></div> -->
+							<!-- 							</label></td> -->
+							<%-- 							<td><a href="${contextRoot}/manage/4/product" --%>
+							<!-- 								class="btn btn-warning" > <span -->
+							<!-- 								class="glyphicon glyphicon-penciil"></span> </a></td> -->
+							<!-- 						</tr> -->
 
-					<tfoot>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Brand</th>
-							<th>Name</th>
-							<th>Qty. Avail</th>
-							<th>Unit Price</th>
-							<th>Activate</th>
-							<th>Edit</th>
-						</tr>
-					</tfoot>
+							<!-- 						<tr> -->
+							<!-- 							<td>4</td> -->
+							<!-- 							<td><img class="adminDataTableImg" -->
+							<%-- 								src="${contextRoot}/resources/images/PRDMNO123PQRX.jpg" alt="macbook pro" /></td> --%>
+							<!-- 							<td>MacBook Pro</td> -->
+							<!-- 							<td>Appel</td> -->
+							<!-- 							<td>1</td> -->
+							<!-- 							<td>1500</td> -->
+							<!-- 							<td><label class="switch"> <input type="checkbox" -->
+							<!-- 									 value="4"/> -->
+							<!-- 									<div class="slider"></div> -->
+							<!-- 							</label></td> -->
+							<%-- 							<td><a href="${contextRoot}/manage/4/product" --%>
+							<!-- 								class="btn btn-warning" > <span -->
+							<!-- 								class="glyphicon glyphicon-penciil"></span> </a></td> -->
+
+							<!-- 						</tr> -->
+							<!-- 					</tbody> -->
+
+							<tfoot>
+								<tr>
+									<th>Id</th>
+									<th>&#160;</th>
+									<th>Brand</th>
+									<th>Name</th>
+									<th>Qty. Avail</th>
+									<th>Unit Price</th>
+									<th>Activate</th>
+									<th>Edit</th>
+								</tr>
+							</tfoot>
 
 
-				</table>
+						</table>
+					</div>
+				</div>
 
 			</div>
 		</div>

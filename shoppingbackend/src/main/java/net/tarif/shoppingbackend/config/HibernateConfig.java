@@ -18,11 +18,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 
-	private final static String DATABASE_URL = "jdbc:h2:tcp://localhost/~/onlineshopping";
-	private final static String DATABASE_DRIVER = "org.h2.Driver";
-	private final static String DATABASE_DIALECT = "org.hibernate.dialect.H2Dialect";
-	private final static String DATABASE_USERNAME = "sa";
-	private final static String DATABASE_PASSWORD = "";
+	// private final static String DATABASE_URL =
+	// "jdbc:h2:tcp://localhost/~/onlineshopping";
+	private final static String DATABASE_URL = "jdbc:mysql://myaws.c6bbvoyqa4lk.us-east-2.rds.amazonaws.com:3306/tarif1986";
+	// private final static String DATABASE_DRIVER = "org.h2.Driver";
+	private final static String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+	// private final static String DATABASE_DIALECT =
+	// "org.hibernate.dialect.H2Dialect";
+	private final static String DATABASE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
+	private final static String DATABASE_USERNAME = "tarif1986";
+	private final static String DATABASE_PASSWORD = "ASDfghjkl123456781&";
 
 	// dataSource bean will be available
 	@Bean("dataSource")
